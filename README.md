@@ -1,6 +1,6 @@
 # Blog Projects
 
-Here is the main repository where I keep the code fir analysis / projects I do specifically for my blog.
+Here is the main repository where I keep the code for analysis / projects I do specifically for my blog.
 
 ## Published Posts
 
