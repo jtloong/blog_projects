@@ -1,16 +1,13 @@
 import urllib.request as ur 
 
-output = open("links.txt","r+").read()
-output = output[1:-1]
-output = output.split('"')
+raw_output = open("links.txt","r+").read()
+raw_output = raw_output[1:-1].split('"')
 
-links = []
-for i in output:
-	if len(i) > 5:
-		links.append(i)
+links = [i for i in raw_output if i[:5] == 'https']
+
 
 for i, link in enumerate(links):
-	resource = ur.urlopen(link)
+	image = ur.urlopen(link)
 	output = open("images/book" + str(i) + ".jpg","wb")
-	output.write(resource.read())
+	output.write(image.read())
 	output.close()

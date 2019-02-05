@@ -1,4 +1,4 @@
-var cover_links = document.querySelectorAll('*[id^="cover_review"]');
+var cover_elements = document.querySelectorAll('*[id^="cover_review"]');
 
 var links = [];
 for (var i = 1; i < cover_links.length; i++){
