@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import os.path
 
 def get_archive_end():
 	result = requests.get("https://www.newyorker.com/magazine/fiction")
@@ -14,8 +15,15 @@ def get_archive_end():
 # data = pd.DataFrame(columns=['date_issued', 'author', 'title', 'description', 'link'])
 
 archive_end = get_archive_end()
+
+if os.path.isfile("new-yorker.csv") == True:
+	existing = pd.read_csv('new-yorker.csv')
+	start = int(existing['page'][-1:])
+else:
+	start = 1
+
 print(archive_end)
-pages = ['https://www.newyorker.com/magazine/fiction/page/' + str(i) for i in range(1, int(archive_end) + 1)]
+pages = ['https://www.newyorker.com/magazine/fiction/page/' + str(i) for i in range(start, int(archive_end) + 1)]
 issues = []
 authors = []
 titles = []
@@ -62,4 +70,4 @@ for index, page_link in enumerate(pages):
 	data['link'] = links
 	data['page'] = page_num
 
-	data.to_csv('new-yorker.csv', index=False)
+	data.to_csv('new-yorker-2.csv', index=False)
